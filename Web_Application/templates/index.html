@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stress Detection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .btn-custom {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4">Stress Detection</h1>
+        <div class="form-container">
+            <form action="/" method="POST">
+                <div class="form-group">
+                    <label for="text_entry">Enter Text:</label>
+                    <input type="text" id="text_entry" name="text_entry" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="model_choice">Select Model:</label>
+                    <select id="model_choice" name="model_choice" class="form-control">
+                        <option value="BernoulliNB">Bernoulli Naive Bayes</option>
+                        <option value="SVM">Support Vector Machine</option>
+                        <option value="Random Forest">Random Forest</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-custom">Predict</button>
+            </form>
+            <hr>
+            <div>
+                <a href="{{ url_for('classification_report_heatmap', model_name='BernoulliNB') }}" class="btn btn-info btn-custom">Classification Report Heatmap (BernoulliNB)</a>
+                <a href="{{ url_for('classification_report_heatmap', model_name='SVM') }}" class="btn btn-info btn-custom">Classification Report Heatmap (SVM)</a>
+                <a href="{{ url_for('classification_report_heatmap', model_name='Random Forest') }}" class="btn btn-info btn-custom">Classification Report Heatmap (Random Forest)</a>
+            </div>
+            <div class="mt-2">
+                <a href="{{ url_for('confusion_matrix', model_name='BernoulliNB') }}" class="btn btn-info btn-custom">Confusion Matrix (BernoulliNB)</a>
+                <a href="{{ url_for('confusion_matrix', model_name='SVM') }}" class="btn btn-info btn-custom">Confusion Matrix (SVM)</a>
+                <a href="{{ url_for('confusion_matrix', model_name='Random Forest') }}" class="btn btn-info btn-custom">Confusion Matrix (Random Forest)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
